@@ -57,6 +57,7 @@ namespace PRN211PE_FA22_TrialTest_NguyenTrungTin
                     txtProductName.Text = selectedProduct.ProductName.ToString();
                     txtProductCode.Text = selectedProduct.ProductCode.ToString();
                     txtPrice.Text = selectedProduct.Price.ToString();
+                    cboCategory.Text = categoryServices.GetAll().FirstOrDefault(p => p.Id == selectedProduct.CategoryId).CategoryName.ToString();
                 }
             }
 
@@ -163,6 +164,11 @@ namespace PRN211PE_FA22_TrialTest_NguyenTrungTin
                 selectedProduct.ProductName = txtProductName.Text;
                 selectedProduct.ProductCode = productCode;
                 selectedProduct.Price = price;
+                if (cboCategory.SelectedValue is int categoryId)
+                {
+                    selectedProduct.CategoryId = categoryId;
+                }
+
             } else
             {
                 MessageBox.Show("Pleas select a product for update");
